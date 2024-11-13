@@ -1,8 +1,9 @@
-import 'package:canteen_app/presentation/general/dashboard_page.dart';
-import 'package:canteen_app/presentation/home/pages/home_page.dart';
+import 'package:canteen_app/presentation/auth/blocs/login/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
+import '../../general/dashboard_page.dart';
 // import '../../home/pages/dashboard_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -75,11 +76,44 @@ class _LoginPageState extends State<LoginPage> {
             prefixIcon: Icon(Icons.lock),
           ),
           const SpaceHeight(24.0),
-          Button.filled(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
+          BlocListener<LoginBloc, LoginState>(
+            listener: (context, state) {
+              if (state is LoginSuccess) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DashboardPage(),
+                  ),
+                );
+              }
+              if (state is LoginFailure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                  ),
+                );
+              }
             },
-            label: 'Login',
+            child: BlocBuilder<LoginBloc, LoginState>(
+              builder: (context, state) {
+                if (state is LoginLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return Button.filled(
+                  onPressed: () {
+                    context.read<LoginBloc>().add(
+                      LoginButtonPressed(
+                          email: usernameController.text,
+                          password: passwordController.text
+                      ),
+                    );
+                  },
+                  label: 'Login',
+                );
+              },
+            ),
           ),
         ],
       ),
