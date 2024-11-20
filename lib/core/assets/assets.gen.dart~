@@ -93,10 +93,6 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/canteen_logo.png
-  AssetGenImage get canteenLogo =>
-      const AssetGenImage('assets/images/canteen_logo.png');
-
   /// File path: assets/images/f1.jpeg
   AssetGenImage get f1 => const AssetGenImage('assets/images/f1.jpeg');
 
@@ -122,7 +118,9 @@ class $AssetsImagesGen {
   AssetGenImage get f8 => const AssetGenImage('assets/images/f8.jpeg');
 
   /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+  AssetGenImage get logo => const AssetGenImage('assets/images/canteen_logo.png');
+
+  AssetGenImage get splash => const AssetGenImage('assets/images/canteen_logo.png');
 
   /// File path: assets/images/manage_printer.png
   AssetGenImage get managePrinter =>
@@ -141,7 +139,6 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        canteenLogo,
         f1,
         f2,
         f3,

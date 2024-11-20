@@ -160,7 +160,6 @@ class _HomePageState extends State<HomePage> {
             itemCount: 10,
             itemBuilder: (context, index) => const ProductCard(),
           ),
-          const SizedBox(height: 30,)
         ],
       ),
     );

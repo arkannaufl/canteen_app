@@ -28,7 +28,11 @@ class _SplashPageState extends State<SplashPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Assets.lottie.apple.lottie(width: 200, height: 200),
+            child: Image.asset(
+              Assets.images.splash.path,
+              width: 200,
+              height: 200,
+            ),
           ),
         ],
       ),

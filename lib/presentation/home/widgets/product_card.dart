@@ -20,7 +20,7 @@ class ProductCard extends StatelessWidget {
             )
           ]
       ),
-      height: 250,
+      height: 200,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
